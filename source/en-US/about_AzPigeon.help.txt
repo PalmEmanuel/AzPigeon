@@ -1,0 +1,21 @@
+TOPIC
+    about_AzPigeon
+
+SHORT DESCRIPTION
+    A PowerShell module to read and write messages in Azure Storage Queues.
+
+LONG DESCRIPTION
+    A PowerShell module to read and write messages in Azure Storage Queues.
+
+EXAMPLES
+    PS C:\> {{ add examples here }}
+
+TROUBLESHOOTING NOTE:
+    Look out on the Github repository for issues and new releases.
+
+SEE ALSO
+    - https://github.com/PalmEmanuel/AzPigeon
+
+KEYWORDS
+    Azure, Storage, Queues, Messaging, Cloud
+
