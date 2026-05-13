@@ -8,4 +8,3 @@
     'Sampler.GitHubTasks'       = 'latest'
     'Microsoft.PowerShell.PlatyPS' = 'latest'
 }
-

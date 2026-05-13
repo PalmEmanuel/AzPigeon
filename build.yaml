@@ -6,8 +6,7 @@
 BuiltModuleSubdirectory: module
 CopyPaths:
   - en-US
-#  - DSCResources
-  # - Modules
+  - ../source/bin/AzPigeon/*
 Encoding: UTF8
 # Can be used to manually specify module's semantic version if the preferred method of
 # using GitVersion is not available, and it is not possible to set the session environment
@@ -46,17 +45,14 @@ BuildWorkflow:
 
   build:
     - Clean
+    - compile # Compiles and stages files
     - Build_Module_ModuleBuilder
     - Build_NestedModules_ModuleBuilder
     - Create_changelog_release_output
 
-
   pack:
     - build
-
     - package_module_nupkg
-
-
 
   # Defining test task to be run when invoking `./build.ps1 -Tasks test`
   test:
@@ -74,7 +70,6 @@ BuildWorkflow:
     #- Merge_CodeCoverage_Files
 
   publish:
-
     - Publish_Release_To_GitHub # Runs first, if token is expired it will fail early
     - publish_module_to_gallery
 
@@ -129,7 +124,6 @@ ModuleBuildTasks:
   Sampler.GitHubTasks:
     - '*.ib.tasks'
 
-
 # Invoke-Build Header to be used to 'decorate' the terminal output of the tasks.
 TaskHeader: |
   param($Path)
@@ -141,9 +135,3 @@ TaskHeader: |
   Write-Build DarkGray "  $Path"
   Write-Build DarkGray "  $($Task.InvocationInfo.ScriptName):$($Task.InvocationInfo.ScriptLineNumber)"
   ""
-
-
-
-
-
-

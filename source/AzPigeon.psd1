@@ -9,13 +9,13 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'AzPigeon.psm1'
+RootModule = 'AzPigeon.dll'
 
 # Version number of this module.
 ModuleVersion = '1.0.0'
 
 # Supported PSEditions
-# CompatiblePSEditions = @()
+CompatiblePSEditions = 'Core'
 
 # ID used to uniquely identify this module
 GUID = '08571ebf-f2e2-4556-a9fb-72c33abc3530'
@@ -24,7 +24,7 @@ GUID = '08571ebf-f2e2-4556-a9fb-72c33abc3530'
 Author = 'Emanuel Palm'
 
 # Company or vendor of this module
-CompanyName = 'Emanuel Palm'
+CompanyName = 'pipe.how'
 
 # Copyright statement for this module
 Copyright = '(c) Emanuel Palm. All rights reserved.'
@@ -33,7 +33,7 @@ Copyright = '(c) Emanuel Palm. All rights reserved.'
 Description = 'A PowerShell module to read and write messages in Azure Storage Queues.'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '5.0'
+PowerShellVersion = '7.4'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -72,7 +72,9 @@ RequiredModules = @()
 FunctionsToExport = @()
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = @()
+CmdletsToExport = @(
+    'Get-QueueMessage'
+)
 
 # Variables to export from this module
 VariablesToExport = @()
@@ -95,22 +97,22 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('azure','queues','messaging','storage')
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/PalmEmanuel/AzPigeon/blob/main/LICENSE'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/PalmEmanuel/AzPigeon'
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+        IconUri = 'https://raw.githubusercontent.com/PalmEmanuel/AzPigeon/refs/heads/main/assets/azpigeon.png'
 
         # ReleaseNotes of this module
-        ReleaseNotes = ''
+        # ReleaseNotes = ''
 
         # Prerelease string of this module
-        Prerelease =  ''
+        # Prerelease =  ''
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         # RequireLicenseAcceptance = $false
