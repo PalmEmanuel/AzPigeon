@@ -5,10 +5,14 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="PowerShellStandard.Library" Version="5.1.*" />
+    <!-- Newer versions currently conflict with PowerShell, needs ALC -->
+    <PackageReference Include="Azure.Identity" Version="1.17.2" />
+    <PackageReference Include="Azure.Storage.Queues" Version="12.25.0" />
+	  <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" />
   </ItemGroup>
 
 </Project>

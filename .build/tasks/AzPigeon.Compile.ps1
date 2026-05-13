@@ -22,21 +22,21 @@ task compile {
         Remove-Item -Path $BinPath -Recurse -Force
     }
 
-    dotnet publish $Path -c $Configuration
+    # For netstandard2.0, we use dotnet build (not publish) to avoid
+    # including platform-specific runtime dependencies
+    dotnet build $Path -c $Configuration
 
-    # Get directories of compiled files
-    $PublishDir = Get-ChildItem -Path $BinPath -Directory -Recurse -Filter publish
+    # Resolve the expected output path directly to avoid picking the wrong framework folder.
+    $BuildOutputDir = Join-Path -Path $BinPath -ChildPath "$Configuration/netstandard2.0"
 
-    if (-not (Test-Path -Path $PublishDir)) {
-        throw "bin/<config>/netx.x directory not found under '$BinPath'."
+    if (-not (Test-Path -Path $BuildOutputDir)) {
+        throw "Build output directory (netstandard2.0) not found at '$BuildOutputDir'."
     }
 
     # Copy files to a directory that ModuleBuilder will pick up in build.yaml
     $StagingDir = "$BinPath/$ProjectName"
     New-Item -ItemType Directory $StagingDir -ErrorAction SilentlyContinue
 
-    Get-ChildItem $PublishDir -File |
-        Where-Object { $_.Extension -in '.dll','.pdb' } |
-        Select-Object -Unique -Property Name -ExpandProperty FullName |
+    Get-ChildItem -Path $BuildOutputDir -File |
         Copy-Item -Destination $StagingDir -Force
 }
