@@ -2,7 +2,7 @@
 namespace AzPigeon;
 
 [Cmdlet(VerbsCommunications.Send, "AzQueueMessage")]
-public class SendAzQueueMessageCommand : AzQueueMessageCommand
+public class SendAzQueueBaseCommand : AzQueueBaseCommand
 {
     [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, ValueFromPipeline = true)]
     [ValidateNotNullOrEmpty()]
@@ -12,7 +12,7 @@ public class SendAzQueueMessageCommand : AzQueueMessageCommand
     {
         foreach(var msg in Message!)
         {
-            WriteObject(queueClient?.SendMessage(msg)?.Value);
+            WriteObject(queueClient?.SendMessage(msg, stopProcessing.Token)?.Value);
         }
     }
 }

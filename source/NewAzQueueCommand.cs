@@ -3,7 +3,7 @@ using System.Management.Automation;
 namespace AzPigeon;
 
 [Cmdlet(VerbsCommon.New, "AzQueue")]
-public class NewAzQueueCommand : AzQueueMessageCommand
+public class NewAzQueueCommand : AzQueueBaseCommand
 {
     protected override void BeginProcessing()
     {

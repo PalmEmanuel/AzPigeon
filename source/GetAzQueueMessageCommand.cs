@@ -3,10 +3,10 @@
 namespace AzPigeon;
 
 [Cmdlet(VerbsCommon.Get, "AzQueueMessage")]
-public class GetQueueMessageCommand : AzQueueMessageCommand
+public class GetQueueMessageCommand : AzQueueBaseCommand
 {
     protected override void EndProcessing()
     {
-        WriteObject(queueClient?.PeekMessage()?.Value);
+        WriteObject(queueClient?.PeekMessage(stopProcessing.Token)?.Value);
     }
 }

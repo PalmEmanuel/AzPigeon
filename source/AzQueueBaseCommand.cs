@@ -3,7 +3,7 @@ using Azure.Identity;
 using Azure.Storage.Queues;
 namespace AzPigeon;
 
-public abstract class AzQueueMessageCommand : PSCmdlet
+public abstract class AzQueueBaseCommand : PSCmdlet
 {
     private protected CancellationTokenSource stopProcessing = new();
     private protected QueueClient? queueClient;
