@@ -36,6 +36,18 @@ jobs:
         with:
           useConfigFile: true
 
+      - name: Setup dependency cache
+        id: dependency-cache
+        uses: actions/cache@v5
+        with:
+          path: output/RequiredModules
+          key: ${{ hashFiles('RequiredModules.psd1') }}
+
+      - name: Download required dependencies
+        if: steps.dependency-cache.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: ./build.ps1 -ResolveDependency -Task noop
+
       - name: Build Module
         shell: pwsh
         run: ./build.ps1 -Tasks build
@@ -43,7 +55,7 @@ jobs:
       - name: Install Azurite
         run: npm install -g azurite
         shell: bash
-        
+
       - name: Run Pester Integration Tests
         shell: pwsh
         run: ./build.ps1 -Tasks test -PesterTag Integration
