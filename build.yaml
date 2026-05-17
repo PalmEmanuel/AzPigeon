@@ -4,7 +4,7 @@
 ####################################################
 
 BuiltModuleSubdirectory: module
-SourcePath: ../source/AzPigeon.psd1
+SourcePath: source/AzPigeon.psd1
 CopyPaths:
   - en-US
   - ../source/bin/AzPigeon/*
@@ -24,6 +24,7 @@ BuildWorkflow:
     - Clean
     - compile # Compiles and stages files
     - Build_Module_ModuleBuilder
+    - Set_PSModulePath
     - Create_changelog_release_output
 
   pack:
@@ -48,19 +49,12 @@ Pester:
   # Excludes one or more paths from being used to calculate code coverage.
   ExcludeFromCodeCoverage:
 
-  # If no scripts are defined the default is to use all the tests under the project's
-  # tests folder or source folder (if present). Test script paths can be defined to
-  # only run tests in certain folders, or run specific test files, or can be use to
-  # specify the order tests are run.
+  # Run all tests by default, can specify if needed
   Script:
   # - tests/QA/module.tests.ps1
-  # - tests/QA
   # - tests/Unit
-  # - tests/Integration
   ExcludeTag:
-  #  - helpQuality
-  #  - FunctionalQuality
-  #  - TestQuality
+  # - ExampleTag
   Tag:
   - Integration
 
