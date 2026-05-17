@@ -23,7 +23,6 @@ BuildWorkflow:
   build:
     - Clean
     - compile # Compiles and stages files
-    - Set_PSModulePath
     - Build_Module_ModuleBuilder
     - Create_changelog_release_output
 
