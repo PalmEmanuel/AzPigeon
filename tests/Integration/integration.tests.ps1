@@ -35,7 +35,7 @@ Describe 'Azurite Integration Tests' -Tag 'Integration' {
             $Receipt = Send-AzQueueMessage -ConnectionString $ConnectionString -QueueName $QueueName -Message $Message
             $Receipt.MessageId | Should -Not -BeNullOrEmpty
 
-            $Peeked = Get-AzQueueMessage -ConnectionString $ConnectionString -QueueName $QueueName
+            $Peeked = Read-AzQueueMessage -ConnectionString $ConnectionString -QueueName $QueueName
             $Peeked.MessageText | Should -BeExactly $Message
         }
     }
