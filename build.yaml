@@ -46,6 +46,7 @@ BuildWorkflow:
   build:
     - Clean
     - compile # Compiles and stages files
+    - Set_PSModulePath
     - Build_Module_ModuleBuilder
     - Create_changelog_release_output
 
@@ -55,8 +56,7 @@ BuildWorkflow:
 
   # Defining test task to be run when invoking `./build.ps1 -Tasks test`
   test:
-    # Uncomment to modify the PSModulePath in the test pipeline (also requires the build configuration section SetPSModulePath).
-    #- Set_PSModulePath
+    - Set_PSModulePath
     - Pester_Tests_Stop_On_Fail
     # Use this task if pipeline uses code coverage and the module is using the
     # pattern of Public, Private, Enum, Classes.
