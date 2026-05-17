@@ -12,6 +12,6 @@ dotnet add ./source/AzPigeon.csproj package Azure.Identity --version 1.17.2 # Ne
 # Import Module and Test
 $QueueUri = 'https://azpigeondemostg.queue.core.windows.net/demo'
 
-Send-AzQueueMessage -QueueUri $QueueUri
-Read-AzQueueMessage -QueueUri $QueueUri
-Receive-AzQueueMessage -QueueUri $QueueUri
+Send-AzQueueMessage -QueueUri $QueueUri -Message 'Hello world!'
+Read-AzQueueMessage -QueueUri $QueueUri # Peek message without removing
+Receive-AzQueueMessage -QueueUri $QueueUri # Receive and remove

@@ -2,8 +2,8 @@
 
 namespace AzPigeon;
 
-[Cmdlet(VerbsCommon.Get, "AzQueueMessage")]
-public class GetQueueMessageCommand : AzQueueBaseCommand
+[Cmdlet(VerbsCommunications.Read, "AzQueueMessage")]
+public class ReadQueueMessageCommand : AzQueueBaseCommand
 {
     protected override void EndProcessing()
     {
